@@ -1,21 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;800&display=swap");
 
 :root {
-  --bg: #fffaf0; --surface: #ffffff; --surface-2: #fff4dc; --ink: #2b2118; --muted: #7a6a58; --line: #eadfcb;
-  --primary: #f0a500; --primary-d: #b97a00; --primary-ink: #2b2118;
-  --ok: #3a9d5d; --ok-bg: #e4f6ea; --ok-d: #2b7a47;
-  --bad: #d64545; --bad-bg: #fde8e8; --bad-d: #a83232;
-  --info: #3b82c4; --shadow: 0 2px 0 rgba(0, 0, 0, 0.04), 0 8px 24px rgba(120, 80, 0, 0.08);
+  /* ขาว-ดำ (เทา) ถนอมสายตา: ไม่ใช้สีจัด; ถูก/ผิดแยกด้วยเส้นทึบ/เส้นประ + เครื่องหมาย ✓ ✗ ไม่พึ่งสี */
+  --bg: #f2f2f2; --surface: #fafafa; --surface-2: #e8e8e8; --ink: #1f1f1f; --muted: #666666; --line: #cfcfcf;
+  --primary: #2a2a2a; --primary-d: #000000; --primary-ink: #f5f5f5;
+  --ok: #2a2a2a; --ok-bg: #e2e2e2; --ok-d: #1a1a1a;
+  --bad: #6b6b6b; --bad-bg: #efefef; --bad-d: #333333;
+  --info: #555555; --shadow: 0 2px 0 rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.08);
   --r: 16px; --font: "Noto Sans Thai", "Sarabun", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 [data-theme="dark"] {
-  --bg: #17130d; --surface: #221c13; --surface-2: #2c2417; --ink: #f4ecdd; --muted: #b3a38c; --line: #3a3021;
-  --primary: #ffb81f; --primary-d: #c98a00; --primary-ink: #1b1409;
-  --ok-bg: #173523; --bad-bg: #3a1c1c; --shadow: 0 2px 0 rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --bg: #141414; --surface: #1e1e1e; --surface-2: #282828; --ink: #e6e6e6; --muted: #a3a3a3; --line: #3a3a3a;
+  --primary: #e6e6e6; --primary-d: #a8a8a8; --primary-ink: #141414;
+  --ok: #e6e6e6; --ok-bg: #2c2c2c; --ok-d: #f2f2f2;
+  --bad: #8f8f8f; --bad-bg: #1a1a1a; --bad-d: #cfcfcf;
+  --info: #bdbdbd; --shadow: 0 2px 0 rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+/* emoji เป็นสี: บังคับเป็นขาวดำทั้งหน้า */
+html { -webkit-text-size-adjust: 100%; filter: grayscale(1); }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.65; }
 a { color: var(--primary-d); }
 h1 { font-size: 1.7rem; line-height: 1.25; margin: 0.2rem 0 0.4rem; font-weight: 800; }
@@ -51,8 +55,8 @@ p { margin: 0.35rem 0; }
 .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--primary-d); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; transform: none; }
 .btn.ghost { background: var(--surface); color: var(--ink); border: 2px solid var(--line); box-shadow: 0 4px 0 var(--line); }
-.btn.ok { background: var(--ok); color: #fff; box-shadow: 0 4px 0 var(--ok-d); }
-.btn.bad { background: var(--bad); color: #fff; box-shadow: 0 4px 0 var(--bad-d); }
+.btn.ok { background: var(--ok); color: var(--primary-ink); box-shadow: 0 4px 0 var(--ok-d); }
+.btn.bad { background: var(--bad); color: var(--primary-ink); box-shadow: 0 4px 0 var(--bad-d); }
 .btn.block { width: 100%; }
 .card { background: var(--surface); border: 2px solid var(--line); border-radius: var(--r); padding: 1rem 1.1rem; box-shadow: var(--shadow); margin: 0.75rem 0; }
 a.card { display: block; text-decoration: none; color: inherit; }
@@ -81,9 +85,9 @@ button.chip { cursor: pointer; font-family: inherit; color: inherit; }
 .ring > div { width: 92px; height: 92px; border-radius: 50%; background: var(--surface); display: grid; place-items: center; font-weight: 800; font-size: 1.5rem; }
 
 /* ---------- หน้าแรก ---------- */
-.hero { background: linear-gradient(135deg, var(--primary), #ffd36b); color: #2b2118; border-radius: 22px; padding: 1.2rem 1.3rem; box-shadow: 0 5px 0 var(--primary-d); }
+.hero { background: var(--primary); color: var(--primary-ink); border-radius: 22px; padding: 1.2rem 1.3rem; box-shadow: 0 5px 0 var(--primary-d); }
 .hero h1 { margin: 0 0 0.2rem; }
-.hero .btn { background: #fff; color: #2b2118; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.18); margin-top: 0.6rem; }
+.hero .btn { background: var(--surface); color: var(--ink); box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35); margin-top: 0.6rem; }
 .stat { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 0.8rem 0; }
 .stat .card { flex: 1 1 140px; text-align: center; margin: 0; }
 .stat b { font-size: 1.7rem; display: block; line-height: 1.1; }
@@ -124,13 +128,15 @@ details.acc details.acc { box-shadow: none; background: var(--bg); }
 .q-text { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.9rem; }
 .opt { display: flex; align-items: center; gap: 0.8rem; width: 100%; text-align: left; background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 0.8rem 1rem; margin: 0.55rem 0; font: inherit; color: inherit; cursor: pointer; box-shadow: 0 3px 0 var(--line); min-height: 56px; }
 .opt .k { flex: none; width: 34px; height: 34px; border-radius: 10px; border: 2px solid var(--line); display: grid; place-items: center; font-weight: 800; }
-.opt.sel { border-color: var(--info); background: color-mix(in srgb, var(--info) 12%, var(--surface)); box-shadow: 0 3px 0 var(--info); }
-.opt.ok { border-color: var(--ok); background: var(--ok-bg); box-shadow: 0 3px 0 var(--ok); }
-.opt.bad { border-color: var(--bad); background: var(--bad-bg); box-shadow: 0 3px 0 var(--bad); }
+.opt.sel { border-color: var(--info); background: color-mix(in srgb, var(--info) 14%, var(--surface)); box-shadow: 0 3px 0 var(--info); }
+.opt.ok { border: 3px solid var(--ok); background: var(--ok-bg); box-shadow: 0 3px 0 var(--ok); }
+.opt.bad { border: 3px dashed var(--bad); background: repeating-linear-gradient(135deg, var(--bad-bg) 0 8px, var(--surface) 8px 16px); box-shadow: none; }
+.opt.ok::after { content: "✓"; margin-left: auto; font-weight: 800; font-size: 1.3rem; }
+.opt.bad::after { content: "✗"; margin-left: auto; font-weight: 800; font-size: 1.3rem; }
 .opt:disabled { cursor: default; }
 .feedback { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom)); animation: up 0.2s ease-out; }
 .feedback.ok { background: var(--ok-bg); border-top: 3px solid var(--ok); color: var(--ok-d); }
-.feedback.bad { background: var(--bad-bg); border-top: 3px solid var(--bad); color: var(--bad-d); }
+.feedback.bad { background: var(--bad-bg); border-top: 3px dashed var(--bad); color: var(--bad-d); }
 .feedback-in { max-width: 980px; margin: 0 auto; }
 .feedback h3 { font-size: 1.2rem; }
 .feedback .exp { color: var(--ink); font-size: 0.97rem; margin: 0.3rem 0 0.7rem; max-height: 32vh; overflow: auto; }
