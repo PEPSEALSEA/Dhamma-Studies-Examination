@@ -1,0 +1,11 @@
+{
+  "name": "dhamma-studies-examination",
+  "private": true,
+  "workspaces": ["web", "api"],
+  "scripts": {
+    "dev:api": "npm run dev -w api",
+    "dev:web": "npm run dev -w web",
+    "build": "npm run build -w web",
+    "typecheck": "npm run typecheck -w web && npm run typecheck -w api"
+  }
+}

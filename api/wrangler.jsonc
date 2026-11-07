@@ -1,0 +1,13 @@
+{
+  "name": "dhamma-exam-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-01-01",
+  "account_id": "b7a466e643f4850f63945b025f7a0768", // GithubPEPSEALSEA
+  "vars": {
+    "SHEET_ID": "1uH0o0OssC_3UUuNsDGRa_myfGLAT_SPc33tPuxMsXO8",
+    "CACHE_SECONDS": "300",
+    "ALLOWED_ORIGIN": "https://pepsealsea.github.io",
+    // อีเมลของ service account (ไม่ใช่ความลับ) — private key เก็บเป็น secret ชื่อ GOOGLE_PRIVATE_KEY
+    "GOOGLE_CLIENT_EMAIL": "googlesheet@data-hamsterhub.iam.gserviceaccount.com"
+  }
+}
