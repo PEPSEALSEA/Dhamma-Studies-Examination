@@ -9,20 +9,20 @@ export const sample: Record<string, Row[]> = {
   ],
   questions: [
     {
-      id: "2567-001", year: "2567", subject: "dhamma",
+      id: "2567-001", year: "2567", audience: "primary", subject: "dhamma", number: "1",
       question: "(ตัวอย่าง) ข้อใดคือพระรัตนตรัย?",
       choice_a: "พระพุทธ พระธรรม พระสงฆ์", choice_b: "ทาน ศีล ภาวนา",
       choice_c: "กาย วาจา ใจ", choice_d: "ศีล สมาธิ ปัญญา",
       answer: "a", explanation: "พระรัตนตรัย คือ พระพุทธ พระธรรม และพระสงฆ์", source: "ข้อมูลตัวอย่าง",
     },
     {
-      id: "2567-002", year: "2567", subject: "dhamma",
+      id: "2567-002", year: "2567", audience: "primary", subject: "dhamma", number: "2",
       question: "(ตัวอย่าง) เบญจศีล มีกี่ข้อ?",
       choice_a: "3", choice_b: "5", choice_c: "8", choice_d: "10",
       answer: "b", explanation: "เบญจ แปลว่า ห้า จึงมี 5 ข้อ", source: "ข้อมูลตัวอย่าง",
     },
     {
-      id: "2566-001", year: "2566", subject: "buddha",
+      id: "2566-001", year: "2566", audience: "primary", subject: "buddha", number: "1",
       question: "(ตัวอย่าง) พระพุทธเจ้าประสูติที่ใด?",
       choice_a: "สวนลุมพินี", choice_b: "พุทธคยา", choice_c: "สารนาถ", choice_d: "กุสินารา",
       answer: "a", explanation: "ประสูติที่สวนลุมพินี", source: "ข้อมูลตัวอย่าง",
@@ -30,7 +30,7 @@ export const sample: Record<string, Row[]> = {
   ],
   study: [
     {
-      id: "s1", subject: "dhamma", order: "1", title: "พระรัตนตรัย (ตัวอย่าง)",
+      id: "s1", subject: "dhamma", audience: "primary", order: "1", title: "พระรัตนตรัย (ตัวอย่าง)",
       content: "พระรัตนตรัย ประกอบด้วย พระพุทธ พระธรรม และพระสงฆ์\n\nเป็นที่พึ่งสูงสุดของพุทธศาสนิกชน",
     },
   ],

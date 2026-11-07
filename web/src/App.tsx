@@ -1,28 +1,24 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Study from "./pages/Study";
-import MockList from "./pages/MockList";
-import MockTest from "./pages/MockTest";
-import Research from "./pages/Research";
+import Flashcards from "./pages/Flashcards";
+import Practice from "./pages/Practice";
+import Quiz from "./pages/Quiz";
+import Stats from "./pages/Stats";
 
 export default function App() {
   return (
-    <>
-      <header className="nav">
-        <NavLink to="/" className="brand">ธรรมศึกษาตรี</NavLink>
-        <NavLink to="/study">ติว</NavLink>
-        <NavLink to="/mock">Mock test</NavLink>
-        <NavLink to="/research">Research</NavLink>
-      </header>
-      <main className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/study" element={<Study />} />
-          <Route path="/mock" element={<MockList />} />
-          <Route path="/mock/:year" element={<MockTest />} />
-          <Route path="/research" element={<Research />} />
-        </Routes>
-      </main>
-    </>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/study" element={<Study />} />
+        <Route path="/study/cards/:subject" element={<Flashcards />} />
+        <Route path="/practice" element={<Practice />} />
+        <Route path="/practice/:year/:audience" element={<Quiz />} />
+        <Route path="/stats" element={<Stats />} />
+        <Route path="*" element={<p>ไม่พบหน้านี้</p>} />
+      </Routes>
+    </Layout>
   );
 }

@@ -6,13 +6,16 @@
 | แท็บ | คอลัมน์ |
 |---|---|
 | `subjects` | `id`, `name`, `description` |
-| `questions` | `id`, `year`, `subject`, `question`, `choice_a`, `choice_b`, `choice_c`, `choice_d`, `answer`, `explanation`, `source` |
-| `study` | `id`, `subject`, `order`, `title`, `content` |
+| `questions` | `id`, `year`, `audience`, `subject`, `number`, `question`, `choice_a`, `choice_b`, `choice_c`, `choice_d`, `answer`, `explanation`, `source` |
+| `study` | `id`, `subject`, `audience`, `order`, `title`, `content` |
 | `research` | `year`, `title`, `summary`, `source`, `url` |
 
 กฎสำคัญ
 - `questions.subject` และ `study.subject` ต้องตรงกับ `subjects.id`
 - `questions.year` เป็นปี พ.ศ. (เช่น 2567) ใช้จัดกลุ่มเป็นชุด Mock test
+- `audience` ระดับผู้สอบ: `primary` (ประถม), `secondary` (มัธยม), `adult` (อุดมศึกษาและประชาชน), `kson` (กศน. เฉพาะปี ๒๕๖๑-๒๕๖๒), `all` (ปี ๒๕๕๙-๒๕๖๐ มีชุดเดียว)
+- `number` เลขข้อในวิชานั้นของชุดสอบ (ใช้เรียงลำดับ)
+- `subject` ปัจจุบัน: `dhamma` (ธรรมวิภาค), `buddha` (พุทธประวัติ/อนุพุทธประวัติ), `benja` (เบญจศีลเบญจธรรม)
 - `answer` ใส่ `a`/`b`/`c`/`d` ตัวพิมพ์เล็ก
 - ข้อที่มีแค่ 3 ตัวเลือก ปล่อย `choice_d` ว่างได้
 - ทุกข้อควรใส่ `source` (ที่มาของข้อสอบ/ข้อมูล)

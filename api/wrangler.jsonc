@@ -9,5 +9,9 @@
     "ALLOWED_ORIGIN": "https://pepsealsea.github.io",
     // อีเมลของ service account (ไม่ใช่ความลับ) — private key เก็บเป็น secret ชื่อ GOOGLE_PRIVATE_KEY
     "GOOGLE_CLIENT_EMAIL": "googlesheet@data-hamsterhub.iam.gserviceaccount.com"
-  }
+  },
+  // จำกัดอัตราต่อ IP (กันการดูดข้อสอบ/เฉลยเป็นชุด): 120 คำขอ / 60 วินาที
+  "ratelimits": [
+    { "name": "RATE_LIMITER", "namespace_id": "1001", "simple": { "limit": 120, "period": 60 } }
+  ]
 }

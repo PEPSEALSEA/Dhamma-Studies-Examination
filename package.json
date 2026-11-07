@@ -1,11 +1,26 @@
 {
   "name": "dhamma-studies-examination",
   "private": true,
-  "workspaces": ["web", "api"],
+  "workspaces": [
+    "web",
+    "api"
+  ],
   "scripts": {
     "dev:api": "npm run dev -w api",
     "dev:web": "npm run dev -w web",
     "build": "npm run build -w web",
-    "typecheck": "npm run typecheck -w web && npm run typecheck -w api"
+    "typecheck": "npm run typecheck -w web && npm run typecheck -w api",
+    "research:index": "node scripts/research/build_index.mjs",
+    "research:download": "node scripts/research/download.mjs",
+    "research:curriculum": "node scripts/research/download_curriculum.mjs",
+    "research:parse": "python scripts/research/parse_exam.py",
+    "research:analyze": "python scripts/research/analyze.py",
+    "research:study": "python scripts/research/build_study.py",
+    "study:book": "python scripts/research/extract_book.py",
+    "study:build": "python scripts/research/build_secondary_study.py",
+    "study:essay": "python scripts/research/essay_history.py"
+  },
+  "devDependencies": {
+    "node-unrar-js": "^2.0.2"
   }
 }
