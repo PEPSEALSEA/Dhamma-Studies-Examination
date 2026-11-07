@@ -33,7 +33,7 @@ export default function Practice() {
         {subjects.map((s) => (
           <Link key={s} className="card" to={`/practice/random/${audience}?subject=${s}`}>
             <h3>{SUBJECT_LABEL[s] ?? s}</h3>
-            <span className="muted">สุ่มจากข้อสอบทุกปี ได้ฟีดแบ็กทันทีทุกข้อ</span>
+            <span className="muted">สุ่มจากข้อสอบทุกปี ตอบแล้วไปข้อต่อไปเลย</span>
           </Link>
         ))}
         <Link className="card" to={`/practice/random/${audience}?mode=review`}>

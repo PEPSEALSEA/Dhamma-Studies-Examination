@@ -51,10 +51,14 @@ export default function Quiz() {
   const [netErr, setNetErr] = useState<string | null>(null);
   const [tries, setTries] = useState(0);
   const savedRef = useRef(false);
+  const advancingRef = useRef(false);
   const isExam = mode === "exam";
+  // ค่าเริ่มต้น: กดตอบแล้วไปข้อถัดไปเลย เฉลยตอนจบ; เปิด "เฉลยทันที" ถ้าอยากเห็นเฉลยทีละข้อ (โหมดสอบจับเวลาเฉลยตอนจบเสมอ)
+  const [instant, setInstant] = useLocalState<boolean>("instant", false);
+  const auto = isExam || !instant;
 
   useEffect(() => {
-    setIdx(0); setPicked({}); setChecked(false); setFinished(false); setGraded(false); setNetErr(null); savedRef.current = false;
+    setIdx(0); setPicked({}); setChecked(false); setFinished(false); setGraded(false); setNetErr(null); savedRef.current = false; advancingRef.current = false;
     setLeft(isExam && questions.length ? questions.length * SECONDS_PER_QUESTION : null);
   }, [questions, isExam]);
 
@@ -152,6 +156,20 @@ export default function Quiz() {
   const ok = isRight(x);
   const mmss = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
+  // เลือกคำตอบ: โหมดอัตโนมัติไปข้อถัดไปทันที (ข้อสุดท้ายของโหมดฝึกจบเลย; โหมดสอบรอกด "ส่งคำตอบ" เผื่อย้อนแก้)
+  const choose = (k: string) => {
+    setPicked((p) => ({ ...p, [x.id]: k }));
+    if (!auto || advancingRef.current) return;
+    const last = idx + 1 >= questions.length;
+    if (isExam && last) return;
+    advancingRef.current = true;
+    setTimeout(() => {
+      advancingRef.current = false;
+      if (last) setFinished(true);
+      else setIdx((i) => i + 1);
+    }, 220);
+  };
+
   const next = () => {
     setChecked(false);
     if (idx + 1 >= questions.length) setFinished(true);
@@ -172,19 +190,24 @@ export default function Quiz() {
         {choices.map(([k, text], i) => {
           const cls = checked ? (k === correctOf(x) ? "ok" : k === mine ? "bad" : "") : mine === k ? "sel" : "";
           return (
-            <button key={k} className={`opt ${cls}`} disabled={checked} onClick={() => setPicked((p) => ({ ...p, [x.id]: k }))} aria-pressed={mine === k}>
+            <button key={k} className={`opt ${cls}`} disabled={checked} onClick={() => choose(k)} aria-pressed={mine === k}>
               <span className="k">{LETTER[i] ?? k}</span>
               <span>{text}</span>
             </button>
           );
         })}
-        {isExam && <p className="muted" style={{ marginTop: "0.8rem" }}>โหมดสอบ: จะเฉลยเมื่อทำครบทุกข้อ</p>}
+        {auto && <p className="muted" style={{ marginTop: "0.8rem" }}>{isExam ? "โหมดสอบ: " : ""}เลือกคำตอบแล้วไปข้อถัดไปเลย — เฉลยเมื่อทำครบทุกข้อ</p>}
+        {!isExam && (
+          <label className="muted" style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginTop: "0.6rem", cursor: "pointer" }}>
+            <input type="checkbox" checked={instant} onChange={(e) => setInstant(e.target.checked)} /> เฉลยทันทีหลังตอบแต่ละข้อ
+          </label>
+        )}
       </div>
 
       {!checked && (
         <div className="q-actions">
           <div className="q-actions-in">
-            {isExam ? (
+            {auto ? (
               <>
                 <button className="btn ghost" onClick={() => setIdx(Math.max(0, idx - 1))} disabled={idx === 0}>ก่อนหน้า</button>
                 <button className="btn block" onClick={() => (idx + 1 >= questions.length ? setFinished(true) : setIdx(idx + 1))}>{idx + 1 >= questions.length ? "ส่งคำตอบ" : "ข้อถัดไป"}</button>
